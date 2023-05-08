@@ -1,0 +1,309 @@
+{% extends 'adbase.html' %}{% block body%}
+<div class="container-fluid  vh-100 ">
+    <br><br><br><br><br>
+    <div class="row d-flex justify-content-evenly align-items-center">
+        <div class="card btn text-white bg-primary mb-3" style="max-width: 18rem;">
+            <div class="card-header">Total Branch</div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    Branch
+                </h5>
+                <p class="card-text">
+                    <h1>{{ bs }}</h1>
+                </p>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal_branch">
+                    view
+                  </button>
+            </div>
+        </div>
+       
+        <div class="card btn text-white bg-success mb-3" style="max-width: 18rem;">
+            <div class="card-header">Total Courier Boys</div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    Courier Boys
+                </h5>
+                <p class="card-text">
+
+                    <h1>{{ cbs }}</h1>
+                </p>
+                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal_courierBoy">
+                    view
+                  </button>
+            </div>
+        </div>
+
+
+
+        <div class="card btn text-light bg-info mb-3 " style="max-width: 18rem; ">
+            <div class="card-header ">courier</div>
+            <div class="card-body ">
+                <h5 class="card-title ">
+                    couriers
+                </h5>
+                <p class="card-text ">
+
+                    <h1>{{ cs }}</h1>
+                </p>
+                <button type="button" class="btn btn-info text-white" data-bs-toggle="modal" data-bs-target="#exampleModal_courier">
+                    view
+                </button>
+            </div>
+        </div>
+        <div class="card btn text-dark bg-light mb-3 " style="max-width: 18rem;">
+            <div class="card-header ">customers</div>
+            <div class="card-body ">
+                <h5 class="card-title ">
+                    customers
+                </h5>
+                <p class="card-text ">
+                    <h1>{{ us }}</h1>
+                </p>
+                <button type="button" class="btn btn-light " data-bs-toggle="modal" data-bs-target="#exampleModal_customer">
+                    view
+                </button>
+            </div>
+        </div>
+    </div>  
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal_branch" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content modal-dialog-scrollable" style="background: rgba(237, 238, 241, 0.918);">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">BRANCH</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+        <div class="modal-body">
+            {% if branch %}
+                
+            <table class="table ">
+                <br>
+                <thead >
+                    <tr>
+                        <td>#</td>
+                        <td ><b>Full Name</b> </td>
+                        <td style="width:20%"><b>Email</b></td>
+                        <td><b>Phone Number</b></td>
+                        <td><b>Address</b></td>
+    
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contact in branch %}
+                    <tr>
+                        <td>{{loop.index}}</td>
+                        <td >{{contact.1}} {{contact.2}}</td>
+                        <td>{{contact.3}}</td>
+                        <td>{{contact.4}}</td>
+                        <td>{{contact.6}}<br>{{contact.7}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                <center><h2>No Branch Exists.</h2></center><h1></h1>
+            {% endif %}
+            
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModal_courierBoy" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content modal-dialog-scrollable" style="background: rgba(237, 238, 241, 0.918);">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Courier Boy</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            {% if courierboy %}
+
+            <table class="table ">
+                <br>
+                <thead >
+                    <tr>
+    <td>#</td>
+                        <td ><b>Full Name</b> </td>
+                        <td style="width:20%"><b>Email</b></td>
+                        <td><b>Phone Number</b></td>
+                        <td><b>Address</b></td>
+    
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contact in courierboy %}
+                    <tr>
+                        <td>{{loop.index}}</td>
+                        <td >{{contact.1}} {{contact.2}}</td>
+                        <td>{{contact.3}}</td>
+                        <td>{{contact.4}}</td>
+                        <td>{{contact.6}}<br>{{contact.7}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                <center><h2>No courier boy are Exists.</h2></center><h1></h1>
+            {% endif %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModal_courier" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content modal-dialog-scrollable" style="background: rgba(237, 238, 241, 0.918);">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">courier</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            {% if courier %}
+
+            <table class="table ">
+                <br>
+                <thead >
+                    <tr>
+    <td>#</td>
+                        <td ><b>courier details</b> </td>
+                        <td style="width:20%"><b>sender details</b></td>
+                        <td><b>receiver details</b></td>
+                        <td><b>status</b></td>
+    
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contact in courier %}
+                    <tr>
+                        <td>{{loop.index}}</td>
+                        <td >{{contact.0}} <br>{{contact.2}}<br>{{contact.3}}</td>
+                        <td>{{contact.5}}<br>{{contact.6}}<br>{{contact.7}}<br>{{contact.8}},{{contact.9}}<br>{{contact.10}}-{{contact.11}}</td>
+                        <td>{{contact.12}}<br>{{contact.13}}<br>{{contact.14}}<br>{{contact.15}},{{contact.16}}<br>{{contact.17}}-{{contact.18}}</td>
+                        <td>{{contact.20}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                <center><h2>No couriers are Exists.</h2></center><h1></h1>
+            {% endif %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModal_customer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content modal-dialog-scrollable" style="background: rgba(237, 238, 241, 0.918);">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">customer</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            {% if user %}
+
+            <table class="table ">
+                <br>
+                <thead >
+                    <tr>
+    <td>#</td>
+                        <td ><b>Full Name</b> </td>
+                        <td style="width:20%"><b>Email</b></td>
+                        <td><b>Phone Number</b></td>
+    
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contact in user %}
+                    <tr>
+                        <td>{{loop.index}}</td>
+                        <td >{{contact.1}}</td>
+                        <td>{{contact.2}}</td>
+                        <td>{{contact.3}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                <center><h2>No customers are register.</h2></center><h1></h1>
+            {% endif %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+      {% if feedback %}
+      
+      <table class="container table  text-white"><br>
+        <h1 class="container text-white">Feedback</h1>
+          <thead >
+              <tr>
+                  <td>#</td>
+                  <td><b>Email</b></td>
+                  <td><b>Message</b></td>
+      
+              </tr>
+          </thead>
+          <tbody>
+              {% for contact in feedback %}
+              <tr>
+                  <td>{{loop.index}}</td>
+                  <td >{{contact.1}}</td>
+                  <td>{{contact.2}}</td>
+              </tr>
+              {% endfor %}
+          </tbody>
+      </table>
+      <br><br>
+      {% else %}
+          
+      {% endif %}
+    
+  </div>
+  <div>
+    {% if complaint %}
+    
+    <table class="container table  text-white"><br>
+      <h1 class="container text-white">Complaint</h1>
+        <thead >
+            <tr>
+                <td>#</td>
+                <td><b>courier id</b></td>
+                <td><b>Email</b></td>
+                <td><b>Message</b></td>
+    
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in complaint %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td>{{contact.0}}</td>
+                <td >{{contact.1}}</td>
+                <td>{{contact.2}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br><br>
+    {% else %}
+        
+    {% endif %}
+  
+</div>
+  
+</div>
+{% endblock %}

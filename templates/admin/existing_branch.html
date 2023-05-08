@@ -1,0 +1,40 @@
+{% extends 'adbase.html' %}{% block body%}
+<div class="container-fluid bg-dark">
+    <div class="col-md-12" style="height:100vh;"><br><br><br>
+        <br> {% if contacts %}
+        <table class="table table-dark table-sm align-middle bg-white">
+            <br>
+            <thead >
+                <tr>
+<td>#</td>
+                    <td ><b>Full Name</b> </td>
+                    <td style="width:20%"><b>Email</b></td>
+                    <td><b>Phone Number</b></td>
+                    <td><b>Address</b></td>
+                    <td><b>Operations</b></td>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for contact in contacts %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td >{{contact.1}} {{contact.2}}</td>
+                    <td>{{contact.3}}</td>
+                    <td>{{contact.4}}</td>
+                    <td>{{contact.6}}<br>{{contact.7}}</td>
+                    
+                    <td>
+                        <a href="admin/delete/{{contact.0}}/{{contact.3}}" class="btn btn-danger btn-delete">Decline</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %} 
+        <div class="d-flex justify-content-center align-items-center text-white" style="height:84.6vh;"><h1>Not accepted any branch.</h1></div>
+         {% endif %}
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'brbase.html' %}{% block body%}
+<style>
+    body{
+        background: rgb(24, 23, 23);
+        
+    }
+</style>
+<div class="container vh-100">
+    <div class="col-md-12"><br><br><br>
+        <br> {% if contacts %}
+        <table class="table table-striped table-hover table-bordered table-sm bg-white">
+
+            <br>
+            <thead>
+                <tr>
+                    <td><b>Full Name</b> </td>
+                    <td><b>email</b></td>
+                    <td><b>phone</b></td>
+                    <td><b>place</b></td>
+                    <td><b>Operations</b></td>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for contact in contacts %}
+                <tr>
+                    <td>{{contact.first_name}} {{contact.last_name}}</td>
+                    <td>{{contact.email}}</td>
+                    <td>{{contact.phone}}</td>
+                    <td>{{contact.address}}<br> {{contact.city}}</td>
+                    <!-- <td>{{contact.1}}</td>
+                    <td>{{contact.2}}</td>
+                    <td>{{contact.3}}</td> -->
+                    <td>
+                        <a href="branch/delete/{{contact.id}}/{{contact.email}}" class="btn btn-danger btn-delete">Decline</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        {% else %} <h1 class="text-white d-flex justify-content-center align-items-center">no courier boy accept</h1> {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,169 @@
+{% extends "brbase.html" %} {% block body %}
+<div class="container ">
+
+    <br><br><br><br>
+    <h1>courier details</h1>
+    <form action="courier_details" method="POST">
+        <!-- courier details -->
+        <div class="card p-3 ">
+            <div class="row gx-3 gy-2 align-items-center ">
+                <div class="col-sm-2 ">
+                    <label class="form-label " for="weight ">Qty</label>
+                    <input class="form-control " type="text " name="Qty" id=" " placeholder="Quantity " min="1 " required>
+                </div>
+
+                <div class="col-sm-3 ">
+                    <label class="form-label " class=" " for="specificSizeSelect ">delivery type</label>
+                    <select class="form-select " id="specificSizeSelect " required name="del_type">
+                    <option value="normal delivery">normal delivery</option>
+                    <option value="personal delivery">personal delivery</option>
+                  </select>
+                </div>
+                <div class="col-sm-3 ">
+                    <label class="form-label " class=" " for="specificSizeSelect ">shipment type</label>
+                    <select class="form-select " id="specificSizeSelect " required name="ship_type">
+                    <option value="normal shipment">normal shipment</option>
+                    <option value="speed shipment">speed shipment</option>
+                  </select>
+                </div>
+                <div class="col-sm-2 ">
+                    <label class="form-label " for="weight ">weight</label>
+                    <input class="form-control " type="text " name="weight" id=" " placeholder="enter in kg measure " min="0 " required>
+                </div>
+            </div>
+        </div>
+
+
+        <br>
+
+        <div class="row ">
+            <!-- sender details -->
+            <div class="card p-3 col-6 ">
+                <div class="row g-3 ">
+                    <h1>sender details</h1>
+
+                    <div class="col-md-6 ">
+                        <label for="name " class="form-label ">Name</label>
+                        <input type="text " class="form-control " name="s_name" required>
+                    </div>
+
+                    <div class="col-md-6 ">
+                        <label for="number " class="form-label ">Phone number</label>
+                        <input type="text " class="form-control " name="s_num" required minlength="10 " maxlength="10 ">
+                    </div>
+                    <div class="col-12 ">
+                        <label for="number " class="form-label ">email</label>
+                        <input type="email" class="form-control " name="s_email" required>
+                    </div>
+
+                    <div class="col-12 ">
+                        <label for="inputAddress " class="form-label ">Address</label>
+                        <input type="text " class="form-control " id="inputAddress " placeholder="1234 Main St " required name="s_add">
+                    </div>
+
+                    <div class="col-md-6 ">
+                        <label for="inputState " class="form-label ">City</label>
+                        <select id="inputState " class="form-select " name="s_city">
+                        <option>{{ session['city'] }}</option>
+                     
+
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 ">
+                        <label for="inputState " class="form-label ">State</label>
+                        <select id="inputState " class="form-select " required name="s_state">
+                                <option selected>karnataka</option>
+                              </select>
+                    </div>
+
+                    <div class="col-md-2 ">
+                        <label for="inputZip " class="form-label ">Zip code</label>
+                        <input type="text " class="form-control " id="inputZip " required minlength="6 " maxlength="6 " name="s_zip">
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- receiver details -->
+            <div class=" card p-3 col-6 ">
+                <div class="row g-3 ">
+                    <h1>receiver details</h1>
+
+                    <div class="col-md-6 ">
+                        <label for="name " class="form-label ">Name</label>
+                        <input type="text " class="form-control " name="r_name" required>
+                    </div>
+
+                    <div class="col-md-6 ">
+                        <label for="number " class="form-label ">Phone number</label>
+                        <input type="text " class="form-control " name="r_num" required minlength="10 " maxlength="10 ">
+                    </div>
+                    <div class="col-12 ">
+                        <label for="number " class="form-label ">email</label>
+                        <input type="email" class="form-control " name="r_email" required>
+                    </div>
+
+                    <div class="col-12 ">
+                        <label for="inputAddress " class="form-label ">Address</label>
+                        <input type="text " class="form-control " id="inputAddress " placeholder="1234 Main St " required name="r_add">
+                    </div>
+
+                    <div class="col-md-6 ">
+                        <label for="inputState " class="form-label ">City</label>
+                        <select id="inputState " class="form-select " name="r_city">
+                        <option selected>Bagalkot</option>
+                        <option>Bellary</option>
+                        <option>Bangalore Rural</option>
+                        <option>Bangalore Urban</option>
+                        <option>Bidar</option>
+                        <option>Chamarajanagar</option>
+                        <option>Chikballapur</option>
+                        <option>Chikmagalur</option>
+                        <option>Chitradurga</option>
+                        <option>Dakshina Kannada</option>
+                        <option>Davangere</option>
+                        <option>Dharwad</option>
+                        <option>Gadag</option>
+                        <option>Hassan</option>
+                        <option>Haveri</option>
+                        <option>Kalaburagi </option>
+                        <option>Kodagu</option>
+                        <option>Kolar</option>
+                        <option>Koppal</option>
+                        <option>Mandya</option>
+                        <option>Mysore</option>
+                        <option>Raichur</option>
+                        <option>Ramanagara</option>
+                        <option>Shivamogga </option>
+                        <option>Tumkur</option>
+                        <option>Udupi</option>
+                        <option>Uttara Kannada</option>
+                        <option>Vijayapura </option>
+                        <option>Yadgir</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4 ">
+                        <label for="inputState " class="form-label ">State</label>
+                        <select id="inputState " class="form-select " required name="r_state">
+                                <option selected>karnataka</option>
+                              </select>
+                    </div>
+
+                    <div class="col-md-2 ">
+                        <label for="inputZip " class="form-label ">Zip code</label>
+                        <input type="text " class="form-control " id="inputZip " required minlength="6 " maxlength="6 " name="r_zip">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <br>
+        <div class="d-flex justify-content-center ">
+            <button type="submit " class="btn btn-primary ">submit</button>
+        </div>
+    </form>
+</div><br><br><br> {% endblock %}

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>application</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+ <!-- font awesome -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Vendor CSS Files -->
+    <link href="{{ url_for('static', filename='vendor/animate.css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/remixicon/remixicon.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- vender js -->
+    <script src="{{ url_for('static', filename='vendor/aos/aos.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/php-email-form/validate.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.js') }}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script type="text/javascript">
+        function a(event) {
+            var ch = event.which;
+            if (ch > 31 && ch != 32 && (ch < 65 || ch > 90) && (ch < 97 || ch > 122)) {
+                return false;
+            }
+        }
+    </script>
+
+</head>
+
+<body style="background-image: url(../../static/img/branch2.jpg);background-size: cover;">
+    <div class=" container">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="col-md-12 ">
+                    <br>
+                    <div class="d-flex justify-content-center">
+                        {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category,message in messages %}
+                        <div class="alert alert-{{category}} d-flex align-items-center alert-dismissible fade show w-75 p-3" role="alert">
+                            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                                <symbol id="success" fill="currentColor" viewBox="0 0 16 16">
+                                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                </symbol>
+                                <symbol id="warning" fill="currentColor" viewBox="0 0 16 16">
+                                  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                                </symbol>
+                                <symbol id="danger" fill="currentColor" viewBox="0 0 16 16">
+                                  <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                                </symbol>
+                              </svg>
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="{{category}}:"><use xlink:href="#{{category}}"/></svg> {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    </div>
+                        {% endfor %} {% endif %} {% endwith %}
+                </div>
+                <div class="row justify-content-md-center my-5" style="justify-content:center;">
+                    <div class="card card-body">
+                        <center> <b> BRANCH APPLICATION </b></center>
+                        <HR>
+                        <form action="branch/branch_application" method="POST" class="row g-3">
+
+                            <div class="col-md-6">
+                                <label for="inputEmail4" class="form-label"><i class="fa fa-user" aria-hidden="true">&nbsp;</i>First name <span style="color: red;">*</span></label>
+                                <input type="text" class="form-control" placeholder="First name" aria-label="First name" name="first_name" required onkeypress="return a(event);">
+                            </div>
+                            <div class="col-md-6 ">
+                                <label for="inputEmail4" class="form-label"><i class="fa fa-user" aria-hidden="true">&nbsp;</i>Last name <span style="color: red;">*</span></label>
+
+                                <input type="text " class="form-control " placeholder="Last name " aria-label="Last name " name="last_name" required onkeypress="return a(event);">
+                            </div>
+
+                            <div class="col-md-6 ">
+                                <label for="inputEmail4 " class="form-label "><i class="fa fa-envelope" aria-hidden="true">&nbsp;</i>Email <span style="color: red;">*</span></label>
+                                <input type="email" class="form-control " id="inputEmail4 " required placeholder="Example@gmail.com " name="email">
+                            </div>
+                            <div class="col-md-6 ">
+                                <label for="inputPassword4 " class="form-label "><i class="fa fa-phone" aria-hidden="true">&nbsp;</i>Phone number <span style="color: red;">*</span></label>
+                                <input type="text " class="form-control " id="inputPassword4 " placeholder="1234567890 " name="phone" required aria-colspan="2" onkeypress="return event.charCode>=48 && event.charCode<=57" maxlength="10" minlength="10">
+
+                            </div>
+                            <div class="col-md-6 ">
+                                <label class="form-label "><i class="fa fa-key" aria-hidden="true">&nbsp;</i>Password <span style="color: red;">*</span></label>
+                                <input type="password" class="form-control " placeholder="Enter password" name="password" required>
+                            </div>
+
+
+                            <div class="col-md-6 ">
+                                <label for="inputState " class="form-label "><i class="fa fa-home" aria-hidden="true">&nbsp;</i>City</label>
+                                <select id="inputState " class="form-select " name="city">
+                                <option selected>Bagalkot</option>
+                                <option>Bellary</option>
+                                <option>Bangalore_Rural</option>
+                                <option>Bangalore_Urban</option>
+                                <option>Bidar</option>
+                                <option>Chamarajanagar</option>
+                                <option>Chikballapur</option>
+                                <option>Chikmagalur</option>
+                                <option>Chitradurga</option>
+                                <option>Dakshina_Kannada</option>
+                                <option>Davangere</option>
+                                <option>Dharwad</option>
+                                <option>Gadag</option>
+                                <option>Hassan</option>
+                                <option>Haveri</option>
+                                <option>Kalaburagi </option>
+                                <option>Kodagu</option>
+                                <option>Kolar</option>
+                                <option>Koppal</option>
+                                <option>Mandya</option>
+                                <option>Mysore</option>
+                                <option>Raichur</option>
+                                <option>Ramanagara</option>
+                                <option>Shivamogga </option>
+                                <option>Tumkur</option>
+                                <option>Udupi</option>
+                                <option>Uttara_Kannada</option>
+                                <option>Vijayapura </option>
+                                <option>Yadgir</option>
+
+                                </select>
+                            </div>
+                            <div class="col-12 ">
+                                <label for="inputAddress " class="form-label "><i class="fa fa-address-card" aria-hidden="true">&nbsp;</i>Address <span style="color: red;">*</span></label>
+                                <textarea type="text " class="form-control " id="inputAddress " placeholder="1234 Main St " name="address" required></textarea>
+                            </div>
+
+                            <div class="col-md-12 ">
+                                <label for="inputState " class="form-label "><i class="fa fa-question-circle" aria-hidden="true">&nbsp;</i>security Question</label>
+                                <select id="inputState " class="form-select " name="question">
+                                <option selected>what_is_your_nickName?</option>
+                                <option>what_is_our_date_of_birth?</option>
+                                <option>what_is_your_birthplace?</option>
+                                </select>
+                            </div><br>
+                            <div class="form-group ">
+                                <label><i class="fa fa-lightbulb-o" aria-hidden="true">&nbsp;</i>write your answer <span style="color: red;">*</span></label>
+                                <input type="text" class="form-control" name="answer" required>
+                            </div><br>
+
+
+                            <div class="col-12 ">
+                                <center>
+                                    <button type="submit " class="btn btn-primary ">Apply <i class="fa fa-sign-in" aria-hidden="true">&nbsp;</i></button>
+
+                                </center>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <a href="/" class="btn btn-outline-dark float-end">Back To Home <i class="fa fa-arrow-right" aria-hidden="true">&nbsp;</i></a>
+                <br><br>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

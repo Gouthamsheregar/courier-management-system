@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>registration</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+ <!-- font awesome -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Vendor CSS Files -->
+    <link href="{{ url_for('static', filename='vendor/animate.css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/remixicon/remixicon.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- vender js -->
+    <script src="{{ url_for('static', filename='vendor/aos/aos.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/php-email-form/validate.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.js') }}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <script type="text/javascript">
+        function a(event) {
+            var ch = event.which;
+            if (ch > 31 && ch != 32 && (ch < 65 || ch > 90) && (ch < 97 || ch > 122)) {
+                return false;
+            }
+        }
+    </script>
+</head>
+
+<body style="background-image: url(static/img/re.png);background-position: center;background-size: cover;">
+    <div class="container">
+        <br><br>
+        <div class="d-flex justify-content-center">
+            <br> {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+            <div class="alert alert-danger d-flex align-items-center alert-dismissible fade show w-50 p-3" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                    <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                    </symbol>
+                  </svg>
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg> {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %} {% endif %} {% endwith %}
+        </div>
+        <div class="row d-flex justify-content-center text-white" >
+            <div class="col-md-6 card " style="background:linear-gradient(to left ,rgba(83, 124, 235, 0.76),rgba(243, 127, 237, 0.781)) ">
+                <h3 class="d-flex justify-content-center mt-3"><i class="fa fa-lock">&nbsp;</i> Reset Password </h3><hr>
+                <form action="/reset_request" method="POST">
+                    <a href="#" class="close"></a>
+                    <div class="form-group">
+                        <label><i class="fa fa-envelope">&nbsp;</i> Email: <span style="color: red;">*</span></label>
+                        <input type="email" class="form-control" name="email" required>
+                    </div><br>
+
+                    <div class="col-md-12 ">
+                        <label for="inputState " class="form-label "><i class="fa fa-question-circle">&nbsp;</i> security Question</label>
+                        <select id="inputState " class="form-select " name="question">
+                            <option selected>What_Is_Your_NickName?</option>
+                            <option>What_Is_Your_Date_Of_Birth?</option>
+                            <option>What_Is_Your_Birthplace?</option>
+                        </select>
+                    </div> <br>
+
+
+                    <div class="form-group">
+                        <label><i class="fa fa-lightbulb-o">&nbsp;</i> answer <span style="color: red;">*</span></label>
+                        <input type="text" class="form-control" name="answer" required>
+                    </div><br>
+
+                    <div class="form-group">
+                        <label><i class="fa fa-key">&nbsp;</i> New Password: <span style="color: red;">*</span></label>
+                        <input type="password" class="form-control" name="password" placeholder="enter your new password" required>
+                    </div><br>
+
+                    <div class="form-group">
+                       <center><button class="btn btn-primary">submit</button></center> 
+                    </div>
+                    <br>
+                </form>
+                <div>
+                    <a href="/" class="btn btn-outline-light" style="float: right;">back to home <i class="fa fa-arrow-right">&nbsp;</i> </a>
+                    <a href="/forget" class="btn btn-outline-light" style="float: left;">Try another way <i class="fa fa-arrow-right">&nbsp;</i> </a>
+                </div>
+                <br>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

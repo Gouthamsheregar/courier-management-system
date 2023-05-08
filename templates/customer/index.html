@@ -1,0 +1,469 @@
+{% extends 'base.html' %}
+{% block title %}home{% endblock title %} 
+{% block body %}
+
+<!-- ======= Hero Section ======= -->
+ {% if session['name'] %} {% else %}
+<section id="hero" class="">
+    <span id="home"></span>
+    <div id="heroCarousel" data-bs-interval="5000" class="" data-bs-ride="carousel">
+        <div class="row  p-2 text-lgiht bg-opacity-10">
+            <div class="col-8">
+                <div class="carousel-container">
+                    <h2 class="animate__animated animate__fadeInDown">Welcome To <span>Courier Management System</span></h2>
+                    <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+                </div>
+            </div>
+
+            <div class="col-4 z-3"> <br><br><br>
+                <div class="d-flex justify-content-center">
+                    <br> {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category,message in messages %}
+                    <div class="alert alert-{{category}} d-flex align-items-center alert-dismissible fade show w-75 p-3" role="alert">
+                        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                            <symbol id="success" fill="currentColor" viewBox="0 0 16 16">
+                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                            </symbol>
+                            <symbol id="warning" fill="currentColor" viewBox="0 0 16 16">
+                              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                            </symbol>
+                            <symbol id="danger" fill="currentColor" viewBox="0 0 16 16">
+                              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                            </symbol>
+                          </svg>
+                        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="{{category}}:"><use xlink:href="#{{category}}"/></svg> {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %} {% endif %} {% endwith %}
+                </div><br>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-9 ">
+                        <div class="card " style="background:rgba(75, 76, 76, 0.4);">
+                            <div class="card-body">
+                                <h3 class="card-title d-flex justify-content-center text-white"><li class="fa fa-user text-primary">&nbsp;</li>Customer Login</h3><hr class="text-white">
+                                <form action="/cu_login" method="POST">
+                                    <div class=" form-group ">
+                                        <label class="text-white"><li class="fa fa-envelope"></li> Email:</label>
+                                        <input type="email" class="form-control text-white" name="email" style="background: none;">
+                                    </div>
+                                    <br>
+                                    <div class="form-group ">
+                                        <label class="text-white"><li class="fa fa-key"></li> Password:</label>
+                                        <input type="password" class="form-control text-white" name="password" style="background: none;">
+                                        <a style="float: right;" href="reset_request">Forgot Password</a>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <button class="btn btn-primary">Login <li class="fa fa-sign-in"></li></button>
+                                    </div>
+                                </form>
+                                <br><p class="text-white " style="float: left;">I don't have Account.</p><a href="register">Create account</a>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br><br><br>
+    </div>
+
+    <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
+      <defs>
+        <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
+      </defs>
+      <g class="wave1">
+        <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)">
+      </g>
+      <g class="wave2">
+        <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
+      </g>
+      <g class="wave3">
+        <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
+      </g>
+    </svg>
+
+</section>
+{% endif %}
+<!-- End Hero -->
+
+<!-- search bar -->
+<div class="container-fluid vh-100 vw-100" style="background-image: url(../../static/img/search1.png);background-size: cover;background-position: center;"><br>
+    <span id="search"></span>
+    <div class="col" id="home"> <br><br>
+        <div class="d-flex justify-content-center">
+            <br> {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category,message in messages %}
+            <div class="alert alert-{{category}} d-flex align-items-center alert-dismissible fade show w-75 p-3" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                    <symbol id="success" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                    </symbol>
+                    <symbol id="warning" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+                    </symbol>
+                    <symbol id="danger" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                    </symbol>
+                  </svg>
+                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="{{category}}:"><use xlink:href="#{{category}}"/></svg> {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %} {% endif %} {% endwith %}
+        </div><br>
+    </div>
+    <div class="col ">
+        <br>
+        <div class="row ">
+            <center>
+                <h1 class="mb-3 text-white">{% if session['name'] %} Welcome to Courier Management System, {{ session['name'] }} {% else %} {% endif %}
+                </h1>
+            </center>
+
+        </div>
+        <form action="/search#search" method="POST" class="d-flex justify-content-center " id="search">
+            <input class="form-control me-2 d-flex justify-content-center " name="cid" style="width:50%; " type="search " placeholder="Enter your Tracking id " aria-label="Search " onkeypress="return event.charCode>=48 && event.charCode
+                <=57 " maxlength="10" minlength="10" required>
+            <button class="btn btn-primary me-2 " type="search ">search</button>
+            
+            <br>
+        </form>
+        {% if contacts=="none" %}
+            
+        {% elif (contacts)  %}       
+        <section class="d-flex justify-content-center">
+            <div class="container d-flex justify-content-center">
+                  <div class="col-rt-12">
+                      <div class="Scriptcontent">
+                      
+               <!-- Stepper HTML -->
+        <div class="step">
+          <div>
+            <div class="circle">1</div>
+          </div>
+          <div>
+            <div class="caption">Sender city</div>
+            <div class="title text-white"> {{ contacts.s_city }}</div>
+          </div>
+        </div>
+        <div class="mb-3" style="border-left: 6px solid rgb(233, 243, 233);height: 27px; margin-left: 8px;"></div>
+        <div class="step">
+          <div>
+            <div class="circle">2</div>
+          </div>
+          <div>
+            
+                {% if (contacts.status) == (contacts.r_city) %}
+                <div class="caption">now</div>
+                <div class="title text-white">
+                    your courier delivery today..
+                </div>  
+                {% elif contacts.status == 'delivared' %}
+                <div class="caption">previous</div>
+                <div class="title text-white">
+                        {{contacts.r_city}}
+                </div>        
+                {% else %}
+
+                <div class="caption">your courier in</div>
+                <div class="title text-white">
+                    {{contacts.status}}
+                </div>
+                {% endif %}
+          </div>
+        </div>
+        <div class="mb-3" style="border-left: 6px solid rgb(233, 243, 233);height: 27px; margin-left: 8px;"></div>
+        <div class="step">
+          <div>
+            <div class="circle">3</div>
+          </div>
+          <div>
+            <div class="caption">receiver city </div>
+            <div class="title text-white">{{ contacts.r_city }}</div>
+          </div>
+        </div>
+                  {% if contacts.status == 'delivared' %}
+        <div class="mb-3" style="border-left: 6px solid rgb(233, 243, 233);height: 27px; margin-left: 8px;"></div>
+
+                  <div class="step">
+                    <div>
+                      <div class="circle">4</div>
+                    </div>
+                    <div>
+                      <div class="title text-white">delivered</div>
+                    </div>
+                  </div>
+                  {% endif %}        
+        <!-- End Stepper HTML -->
+                    </div>
+                </div>
+            </div>
+        </section>
+           {%else%}
+           <div class="d-flex justify-content-center align-items-center mt-3">
+               <br><br><br>
+            <b class="text-white">Invalid Tracking ID</b>       
+           </div>
+          {% endif %} 
+    </div>
+</div>
+<!-- end search bar -->
+
+<!-- profile -->
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered" >
+        <div class="modal-content" style="background: rgba(226, 229, 236, 0.774);">
+            <div class="modal-header ">
+                <h2 class="modal-title" id="exampleModalToggleLabel"><i class="fa fa-address-book-o"></i> Profile</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <form>
+                    <fieldset disabled>
+                        <div class="row ">
+                            <div class="col-6 ">
+                                <label for="disabledTextInput" class="form-label "><i class="fa fa-user"></i> Name</label>
+                                <input type="text " id="disabledTextInput " class="form-control " placeholder={{ session[ 'name'] }}>
+                            </div>
+                            <div class="col-6 mb-3 ">
+                                <label for="disabledTextInput " class="form-label "><i class="fa fa-phone"></i> phone number</label>
+                                <input type="text " id="disabledTextInput " class="form-control " placeholder={{ session[ 'phone'] }}>
+                            </div>
+                            <div class="col-6 mb-3 ">
+                                <label for="disabledTextInput" class="form-label "><i class="fa fa-envelope"></i> Email</label>
+                                <input type="email " id="disabledTextInput" class="form-control " placeholder={{ session[ 'email'] }}>
+
+                            </div>
+                            <div class="col-6 mb-3 ">
+                                <label for="disabledTextInput " class="form-label "><i class="fa fa-key"></i>  Password</label>
+                                <input type="password " id="disabledTextInput " class="form-control " placeholder='********' >
+                            </div>
+                            <div class="mb-3 ">
+                                <label for="disabledTextInput " class="form-label "><i class="fa fa-question-circle"></i> Security question</label>
+                                <input type="text " id="disabledTextInput " class="form-control " placeholder={{ session[ 'question'] }}>
+                            </div>
+                            <div class="mb-3 ">
+                                <label for="disabledTextInput" class="form-label "><i class="fa fa-lightbulb-o"> </i> Answer</label>
+                                <input type="password" id="disabledTextInput " class="form-control " placeholder={{ session[ 'answer'] }}>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+            <div class=" modal-footer">
+                <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background: rgba(226, 229, 236, 0.774);">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalToggleLabel2"><i class="fa fa-address-book-o"> </i> Update Your Information</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/profile" method="POST">
+                    <div class="row ">
+                        <div class="form-group col-6 ">
+                            <label class="form-label "><i class="fa fa-user"></i> Name <span style="color: red;">*</span></label>
+                            <input type="text " class="form-control " name="name" onkeypress="return a(event); " value={{ session[ 'name'] }}>
+                        </div>
+
+                        <div class="form-group col-6 mb-3 ">
+                            <label class="form-label "><i class="fa fa-phone"></i> phone number<span style="color: red;">*</span></label>
+                            <input type="text " id="disabledTextInput " class="form-control " name="phone" onkeypress="return event.charCode>=48 && event.charCode
+                    <=57 " maxlength="10" minlength="10" value={{ session[ 'phone'] }}>
+                        </div>
+
+                        <div class="form-group mb-3 ">
+                            <label><i class="fa fa-envelope"></i> Email <span style="color: red; ">*</span></label>
+                            <input type="email" class="form-control" name="email" required value={{ session[ 'email'] }}>
+                        </div><br>
+                        <br><br>
+
+                        <div class="col-md-12 mb-3 ">
+                            <label for="inputState " class="form-label "><i class="fa fa-question-circle"></i> security Question</label>
+                            <select id="inputState " class="form-select " name="question">
+    
+                            <option selected>{{ session['question'] }}</option>
+                            <option>What_Is_Your_NickName?</option>
+                            <option>What_Is_Your_Date_Of_Birth?</option>
+                            <option>What_Is_Your_Birthplace?</option>
+                            </select>
+                        </div><br>
+
+                        <div class="mb-3 ">
+                            <label for="disabledTextInput " class="form-label "><i class="fa fa-lightbulb-o"> </i> Answer<span style="color: red; "> *</span></label>
+                            <input type="password " id="disabledTextInput " class="form-control " name="answer" required value={{ session[ 'answer'] }}>
+                        </div>
+
+                        <div class="form-group ">
+                            <button class="btn btn-primary">save</button>
+                        </div>
+
+
+                        <div class="form-group ">
+                            <a class="nav-link" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal" href="#"><i class="fa fa-key"> </i> change password</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="form-group modal-footer ">
+                <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">back</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="background: rgba(226, 229, 236, 0.774);">
+            <div class="modal-header">
+                <h5 class="modal-title " id="exampleModalToggleLabel2"><i class="fa fa-address-book-o"> </i> Change Your Password</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <form action="/change_password" method="POST">
+
+                    <div class="form-group ">
+                        <label><i class="fa fa-unlock-alt"></i> old password: <span style="color: red; ">*</span></label>
+                        <input type="text " class="form-control " name="old_password" required>
+                    </div><br>
+
+                    <div class="form-group ">
+                        <label><i class="fa fa-lock"></i> new password: <span style="color: red; ">*</span></label>
+                        <input type="text " class="form-control " name="new_password" required>
+                    </div>
+                    <br>
+
+                    <div class="form-group ">
+                        <button class="btn btn-primary">save</button>
+                    </div>
+
+                </form>
+            </div>
+            <div class="form-group modal-footer ">
+                <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">back</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--End modal-->
+
+<!-- ======= About Us Section ======= -->
+<div class="row" style="background-image: url(../../static/img/about.jpg);background-size: cover;background-position: center;">
+    <div class="container vh-100 ">
+        <br id="about"><br>
+        <section id="about " class="about ">
+            <div class="container ">
+                <div class="section-title " data-aos="zoom-out">
+                    <h2 class="text-white">About us</h2>
+                    <p class="text-white">About us</p>
+                </div>
+
+                <div class="row content ">
+                    <div class="col-lg-6 " data-aos="fade-up " data-aos-delay="150 ">
+                        <p>
+                            The object of the project is going to delivery the courier from sender to the
+                            receiver safe and securely with out any damages to exact person                        </p>
+                        <ul>
+                            <li><i class="ri-check-double-line "></i> Get Couriers</li>
+                            <li><i class="ri-check-double-line "></i> Shiped securely</li>
+                            <li><i class="ri-check-double-line "></i> Delivaried safely</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6 pt-4 pt-lg-0 " data-aos="fade-up " data-aos-delay="300 ">
+                        <p>
+                            Courier services operate on all scales, from within specific towns or cities, to regional, national and global services. Large courier companies include DHL, Intact Courier, Postaplus, DTDC, FedEx, EMS International, TNT, UPS, India Post, J&T Express and Aramex. These offer services worldwide, typically via a hub and spoke model.
+                        </p>
+                        <a href="https://en.wikipedia.org/wiki/Courier" class="btn-learn-more ">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<!-- End About Us Section -->
+
+<!-- feedback -->
+<section id="contact" class="contact" style="background-image: url(../../static/img/portfolio/portfolio7.jpg);background-size: cover;background-position: center;">
+<span id="feedback"></span>
+<br><br>
+    <div class="container mt-5" >
+
+        <div class="section-title " data-aos="zoom-out">
+            <h2 class="text-white">feedback</h2>
+            <p class="text-white">feedback</p>
+        </div>
+
+        <div class="row mt-3 ">
+
+            <div class="col-lg-8 mt-5 mt-lg-0 " data-aos="fade-left ">
+
+                <form action="/feedback" method="POST">
+                    <div class=" row ">
+
+                        <div class="col-md-12 form-group mt-3 mt-md-0 ">
+                            <input type="email " class="form-control text-white" name="email" id="email " placeholder="Your Email " required style="background: rgba(0, 0, 0, 0.877);">
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-3 ">
+                        <textarea class="form-control text-white" name="message" rows="5 " placeholder="Message "  required style="background: rgba(0, 0, 0, 0.856);color: rgba(250, 250, 250, 0.774);"></textarea>
+                    </div>
+                    <br>
+                    <div class="text-center"><button class="btn btn-outline-primary me-2" type="submit ">Send Message</button></div>
+                </form>
+
+            </div>
+            
+        </div>
+
+    </div>
+    <br>
+    <br>
+</section>
+<!-- end feedback -->
+
+<!-- complaint -->
+{% if session['name'] %}
+<section id="contact" class="contact" style="background-image: url(../../static/img/complaint.png);background-repeat: no-repeat;background-size: cover;">
+    <span id="compliant"></span>
+    <div class="container">
+        <br><br><br>
+        <div class="section-title mt-5" data-aos="zoom-out ">
+            <h2 class="text-white">compliant</h2>
+            <p class="text-white">compliant</p>
+        </div>
+
+        <div class="row mt-5 ">
+
+            <div class="col-lg-8 mt-5 mt-lg-0 " data-aos="fade-left ">
+
+                <form action="complaint" method="POST">
+                    <div class="row ">
+                        <div class="col-md-6 form-group ">
+                            <input type="text " name="cid" class="form-control text-white" id="name " placeholder="courier id " onkeypress="return event.charCode>=48 && event.charCode
+                    <=57 " maxlength="10 " minlength="10 " required style="background: rgba(0, 0, 0, 0.877);">
+                        </div>
+                        <div class="col-md-6 form-group mt-3 mt-md-0 ">
+                            <input type="email " class="form-control text-white" name="email" id="email " value={{ session[ 'email'] }} required readonly style="background: rgba(0, 0, 0, 0.877);">
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-3 ">
+                        <textarea class="form-control text-white" name="message" rows="5 " placeholder="Message " required style="background: rgba(0, 0, 0, 0.877);"></textarea>
+                    </div><br><br>
+                    <div class="text-center "><button class="btn btn-outline-primary me-2" type="submit">Send Message</button></div>
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+{% endif %}
+{% endblock body %}

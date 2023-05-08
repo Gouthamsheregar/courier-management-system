@@ -1,0 +1,358 @@
+{% extends "cobase.html" %} {% block body %}
+<style>
+    body{
+        background-image: url(static/img/2.jpg);background-position: center;background-size: cover;
+    }
+</style>
+<br><br><br>
+<div class="d-flex justify-content-center">
+    <br> {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category,message in messages %}
+    <div class="alert alert-{{category}} d-flex align-items-center alert-dismissible fade show w-75 p-3" role="alert">
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol id="success" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+            </symbol>
+            <symbol id="warning" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </symbol>
+            <symbol id="danger" fill="currentColor" viewBox="0 0 16 16">
+              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+            </symbol>
+          </svg>
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="{{category}}:"><use xlink:href="#{{category}}"/></svg> {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %} {% endif %} {% endwith %}
+</div><br>
+    <div class="container-fluid vh-100 d-flex justify-content-center align-items-center" >
+    {% if session['random'] and session['status'] == "accepted" %}
+    <div class="container col">
+        <div class="row">
+            <h1 class="text-white">your application is accepted. and to active your account,<br> verify by code to send your register email.
+            </h1>
+         </div>
+         <div class="row">
+            
+                 <!-- Button trigger modal -->
+                 <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModalToggle_v" href="#verify">
+                     verify to click here.
+                 </a>
+             
+         </div>
+             <div class="row">
+                 <p class="text-warning">note: after verification please login again...</p>
+             </div>
+    </div>
+
+    <!-- virefication -->
+    <div class="modal fade" id="exampleModalToggle_v" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalToggleLabel">
+                        <center> verification </center>
+                    </h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+                    <form action="courier_boy/verification" method="POST" class="row g-3 ">
+
+                        <div class="col-12 ">
+                            <label for="inputEmail4 " class="form-label d-flex ">verification code: <span style="color: red;">*</span></label>
+                            <input type="text " class="form-control " placeholder="********" name="random" required>
+                        </div>
+                        <div class="col-12 ">
+                            <center>
+                                <button type="submit " class="btn btn-primary ">Apply</button>
+                            </center>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% elif session['status'] == "accepted" and session['random'] == "" %}
+    <div class="container-fluid vh-100">
+
+        <div class="col-md-12">
+            {% if contacts %}
+            <table class="table text-white">
+                <thead > 
+                    <tr>
+                        <td><b>tracking id</b> </td>
+                        <td><b>Quantity</b></td>
+                        <td><b>Name</b></td>
+                        <td><b>number</b></td>
+                        <td><b>Address</b></td>
+                        <td><b>Operations</b></td>
+    
+    
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contact in contacts %}
+                    <tr>
+                        <td>{{contact.tid}} {{contact.last_name}}</td>
+                        <td>{{contact.Qty}}</td>
+                        <td>{{contact.r_name}} <br>{{contact.r_email}} </td>
+                        <td>{{contact.r_num}}<br></td>
+                        <td>{{contact.r_add}}<br>{{contact.r_city}}<br>{{contact.r_state}}-{{contact.r_zip}}</td>
+                       
+                        <td>
+                            <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalToggle_f" href="#verify" >verify</a>   
+                        </td>
+                    </tr>
+                     <!-- virefication -->
+                    <div class="modal fade" id="exampleModalToggle_f" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2 class="modal-title" id="exampleModalToggleLabel">
+                                        <center> verification </center>
+                                    </h2>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+
+
+                                    <form action="courier_boy/delivared" method="POST" class="row g-3 ">
+                                        <div class="col-2 ">
+                                            <input type="hidden" name="random" value={{ contact.random }}>
+                                        </div>
+                                        <div class="col-2 ">
+                                            <input type="hidden" name="tid" value={{ contact.tid }}>
+                                        </div>
+
+                                        <div class="col-12 ">
+                                            <label for="inputEmail4 " class="form-label d-flex ">verification code: <span style="color: red;">*</span></label>
+                                            <input type="text " class="form-control " placeholder="********" name="code" required>
+                                        </div>
+                                        <div class="col-12 ">
+                                            <center>
+                                                <button type="submit " class="btn btn-primary ">Apply</button>
+                                            </center>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}<h1 class="d-flex justify-content-center align-items-center vh-100 text-white">No Courier Available</h1>{% endif %}
+        </div>     
+        
+        <!-- profile -->
+        <div class="modal fade" id="exampleModalToggle_p" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+            <div class="modal-dialog modal-dialog-centered" >
+                <div class="modal-content" style="background: rgba(226, 229, 236, 0.774);">
+                    <div class="modal-header ">
+                        <h2 class="modal-title" id="exampleModalToggleLabel"><i class="fa fa-address-book-o"></i> Profile</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body ">
+                        <form>
+                            <fieldset disabled>
+                                <div class="row ">
+                                    <div class="col-6 ">
+                                        <label for="disabledTextInput" class="form-label "><i class="fa fa-user"></i> Name</label>
+                                        <input type="text " id="disabledTextInput " class="form-control " placeholder={{ session[ 'first_name'] }}>
+                                    </div>
+                                    <div class="col-6 mb-3 ">
+                                        <label for="disabledTextInput " class="form-label "><i class="fa fa-phone"></i> phone number</label>
+                                        <input type="text " id="disabledTextInput " class="form-control " placeholder={{ session[ 'phone'] }}>
+                                    </div>
+                                    <div class="col-6 mb-3 ">
+                                        <label for="disabledTextInput" class="form-label "><i class="fa fa-envelope"></i> Email</label>
+                                        <input type="email " id="disabledTextInput" class="form-control " placeholder={{ session[ 'email'] }}>
+        
+                                    </div>
+                                    <div class="col-6 mb-3 ">
+                                        <label for="disabledTextInput " class="form-label "><i class="fa fa-key"></i>  Password</label>
+                                        <input type="password " id="disabledTextInput " class="form-control " placeholder='********' >
+                                    </div>
+                                    <div class="mb-3 ">
+                                        <label for="disabledTextInput " class="form-label "><i class="fa fa-question-circle"></i> Security question</label>
+                                        <input type="text " id="disabledTextInput " class="form-control " placeholder={{ session[ 'question'] }}>
+                                    </div>
+                                    <div class="mb-3 ">
+                                        <label for="disabledTextInput" class="form-label "><i class="fa fa-lightbulb-o"> </i> Answer</label>
+                                        <input type="password" id="disabledTextInput " class="form-control " placeholder={{ session[ 'answer'] }}>
+                                    </div>
+                                </div>
+        
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class=" modal-footer">
+                        <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Back</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% elif session['status']=="decline" %}
+    <div class="container-fluid vh-100">
+        <h1>
+            Welcome to Courier Management System,mr/mrs {{session['first_name']}}<br> your application is decline.
+
+            <a class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" href="#profile">resubmit</a>
+
+        </h1>
+        <p> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nisi, reiciendis magnam! Ducimus atque delectus nulla temporibus molestias? Perferendis eligendi quasi fuga blanditiis, adipisci facilis temporibus quis, quia deserunt ad iure.</p>
+    
+    <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalToggleLabel">
+                        <center> COURIER BOY APPLICATION </center>
+                    </h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+                    <form action="courier_boy/resubmit" method="POST" class="row g-3 ">
+
+                        <div class="col-md-6 ">
+                            <label for="inputEmail4 " class="form-label ">First name <span style="color: red;">*</span></label>
+                            <input type="text " class="form-control " placeholder="First name " aria-label="First name " name="first_name" required onkeypress="return a(event);" value={{ session[ 'first_name'] }}>
+                        </div>
+                        <div class=" col-md-6 ">
+                            <label for="inputEmail4 " class="form-label ">Last name <span style="color: red; ">*</span></label>
+
+                            <input type="text " class="form-control " placeholder="Last name " aria-label="Last name " name="last_name" required onkeypress="return a(event); " value={{ session[ 'last_name'] }}>
+                        </div>
+
+                        <div class="col-md-6 ">
+                            <label for="inputEmail4 " class="form-label ">Email <span style="color: red; ">*</span></label>
+                            <input type="email " class="form-control " id="inputEmail4 " placeholder="Example@gmail.com " name="email" required value={{ session[ 'email'] }}>
+                        </div>
+
+                        <div class="col-md-6 ">
+                            <label for="inputPassword4 " class="form-label ">Phone number <span style="color: red; ">*</span></label>
+                            <input type="text " class="form-control " id="inputPassword4 " placeholder="+91 12345 67890 " name="phone" required onkeypress="return event.charCode>=48 && event.charCode<=57 " value={{ session[ 'phone'] }}>
+                        </div>
+                        <div class="col-md-6 ">
+                            <label class="form-label ">Password <span style="color: red; ">*</span></label>
+                            <input type="password" class="form-control " placeholder="Enter password " name="password" required value={{ session[ 'password'] }}>
+                        </div>
+                        <div class="col-md-6 ">
+                            <label for="inputState " class="form-label ">City</label>
+                            <select id="inputState " class="form-select " name="city" value={{ session[ 'city'] }}>
+                                <option selected>Bagalkot</option>
+                                <option>Bellary</option>
+                                <option>Bangalore Rural</option>
+                                <option>Bangalore Urban</option>
+                                <option>Bidar</option>
+                                <option>Chamarajanagar</option>
+                                <option>Chikballapur</option>
+                                <option>Chikmagalur</option>
+                                <option>Chitradurga</option>
+                                <option>Dakshina Kannada</option>
+                                <option>Davangere</option>
+                                <option>Dharwad</option>
+                                <option>Gadag</option>
+                                <option>Hassan</option>
+                                <option>Haveri</option>
+                                <option>Kalaburagi </option>
+                                <option>Kodagu</option>
+                                <option>Kolar</option>
+                                <option>Koppal</option>
+                                <option>Mandya</option>
+                                <option>Mysore</option>
+                                <option>Raichur</option>
+                                <option>Ramanagara</option>
+                                <option>Shivamogga </option>
+                                <option>Tumkur</option>
+                                <option>Udupi</option>
+                                <option>Uttara Kannada</option>
+                                <option>Vijayapura </option>
+                                <option>Yadgir</option>
+
+                                </select>
+                        </div>
+                        <div class="col-12 ">
+                            <label for="inputAddress " class="form-label ">Address <span style="color: red; ">*</span></label>
+                            <textarea class="form-control " id="floatingTextarea " name="address" required>{{ session[ 'address'] }}</textarea>
+                        </div>
+
+
+
+                        <div class="col-12 ">
+                            <center>
+                                <button type="submit " class="btn btn-primary ">Apply</button>
+                            </center>
+                        </div>
+                    </form>
+                </div>
+                <div class=" modal-footer ">
+                    <button class="btn btn-primary " data-bs-target="#logout " data-bs-toggle="modal " data-bs-dismiss="modal ">back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+{%else%}
+    <div class="container-fluid vw-100 vh-100 d-flex justify-content-center align-items-center">
+        <h1 class="text-white">
+            Welcome To Courier Management System, Mr/Mrs {{session['first_name']}} <br> Your Application is in Being Process...
+        </h1>
+    </div>
+{% endif %}
+<!-- profile -->
+<div class="modal fade" id="exampleModalToggle_p" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered" >
+        <div class="modal-content" style="background: rgba(226, 229, 236, 0.774);">
+            <div class="modal-header ">
+                <h2 class="modal-title" id="exampleModalToggleLabel"><i class="fa fa-address-book-o"></i> Profile</h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <form>
+                    <fieldset disabled>
+                        <div class="row ">
+                            <div class="col-6 ">
+                                <label for="disabledTextInput" class="form-label "><i class="fa fa-user"></i> Name</label>
+                                <input type="text " id="disabledTextInput " class="form-control " placeholder={{ session[ 'first_name'] }}>
+                            </div>
+                            <div class="col-6 mb-3 ">
+                                <label for="disabledTextInput " class="form-label "><i class="fa fa-phone"></i> phone number</label>
+                                <input type="text " id="disabledTextInput " class="form-control " placeholder={{ session[ 'phone'] }}>
+                            </div>
+                            <div class="col-6 mb-3 ">
+                                <label for="disabledTextInput" class="form-label "><i class="fa fa-envelope"></i> Email</label>
+                                <input type="email " id="disabledTextInput" class="form-control " placeholder={{ session[ 'email'] }}>
+
+                            </div>
+                            <div class="col-6 mb-3 ">
+                                <label for="disabledTextInput " class="form-label "><i class="fa fa-key"></i>  Password</label>
+                                <input type="password " id="disabledTextInput " class="form-control " placeholder='********' >
+                            </div>
+                            <div class="mb-3 ">
+                                <label for="disabledTextInput " class="form-label "><i class="fa fa-question-circle"></i> Security question</label>
+                                <input type="text " id="disabledTextInput " class="form-control " placeholder={{ session[ 'question'] }}>
+                            </div>
+                            <div class="mb-3 ">
+                                <label for="disabledTextInput" class="form-label "><i class="fa fa-lightbulb-o"> </i> Answer</label>
+                                <input type="password" id="disabledTextInput " class="form-control " placeholder={{ session[ 'answer'] }}>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+            <div class=" modal-footer">
+                <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Edit</button>
+            </div>
+        </div>
+    </div>
+</div></div>
+<!--End modal-->{% endblock %}

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Vendor CSS Files -->
+    <link href="{{ url_for('static', filename='vendor/animate.css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/remixicon/remixicon.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/star.css') }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stpper.css') }}">
+
+    <!-- vender js -->
+    <script src="{{ url_for('static', filename='vendor/aos/aos.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/php-email-form/validate.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.js') }}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+    <script type="text/javascript">
+        function a(event) {
+            var ch = event.which;
+            if (ch > 31 && ch != 32 && (ch < 65 || ch > 90) && (ch < 97 || ch > 122)) {
+                return false;
+            }
+        }
+    </script>
+
+    <title> {% block title %}{% endblock title %} - cms</title>
+</head>
+
+<!-- style="background-image: url('static/image/bg.jpg');" -->
+
+<body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center ">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            <div class="logo">
+                <h1>
+                    <!-- <a href="#"><img src="static/img/logo.png" alt="logo" class="img-fluid"></a> -->
+                    <a href="#" class="text-white">𝕮𝖔𝖚𝖗𝖎𝖊𝖗</a>
+                </h1>
+            </div>
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link scrollto fw-bold" href="#home">Home</a></li>
+                    {% if not(session['name']) %}
+                    <li><a class="nav-link scrollto fw-bold" href="#search">search</a></li>
+                    {% endif %}
+                    <li><a class="nav-link scrollto fw-bold" href="#about">About</a></li>
+                    <li><a class="nav-link scrollto fw-bold" href="#feedback">Feedback</a></li>
+
+                    {% if session['name'] %}
+                    <li><a class="nav-link scrollto fw-bold" href="#compliant">Compliant</a></li>
+                    <li><a class="nav-link scrollto fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModalToggle" href="#profile">profile</a></li>
+                    <li><a class="nav-link scrollto fw-bold" href="/transaction">Transaction</a></li>
+                    {% endif %}
+
+                    <!-- login/logout -->
+                    {% if session['name'] %}
+                    <li><a class="nav-link scrollto fw-bold" href="/logout">logout</a></li>
+                    {% else %}
+                    <li class="dropdown fw-bold"><a href="#"><span>Login</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="courier_boy/courier_boy_login">courier_boy Login</a></li>
+                            <li><a href="branch/branch_login">Branch Login</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a href="admin/admin_login">Admin</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+            <!-- .navbar -->
+        </div>
+    </header>
+    <!-- End Header -->
+    {% block body %} {% endblock body %}
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer">
+        <div class="container">
+            <h3>Courier Management System</h3>
+            <div class="credits">
+                Team : Pavan Kumar R | Sujan Mudoddi | Preethish S Gangoli
+            </div>
+            <div class="copyright">
+                &copy; Copyright <strong><span>CMS</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                Designed by <a class="text-white" href="#">kit.kat.karna</a>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+</body>
+
+</html>
+
+</html>

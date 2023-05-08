@@ -1,0 +1,52 @@
+{% extends 'brbase.html' %}{% block body%}
+<div class="container-fluid vh-100 bg-dark"><br><br><br>
+
+
+    <br> {% if contacts %} 
+    <table class="table table-responsive table-sm">
+
+        
+        <thead>
+            <tr>
+                <td class="text-white"><b>Courier Details</b> </td>
+                <td class="text-white"><b>Sender Details</b></td>
+                <td class="text-white"><b>Receiver Details</b></td>
+                <td class="text-white"><b>status</b></td>
+            </tr>
+        </thead>
+        
+        <tbody class="text-white">
+            {% for contact in contacts %}
+            <tr>
+                <td>Tracking No :&nbsp;&nbsp;&nbsp; {{ contact.tid }} <br>
+                    weight  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;&nbsp;{{ contact.weight}} <br>
+                    status &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp; {{ contact.status}} <br>
+                    price &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp; {{ contact.price }}
+                </td>
+                <td>
+                    {{ contact.s_name }} <br>
+                    {{ contact.s_num }} <br>
+                    {{ contact.s_add}} <br>
+                    {{ contact.s_city}} <br>
+                    {{ contact.s_state}} -
+                    {{ contact.s_zip}}
+                </td>
+                <td> {{ contact.r_name }} <br>
+                    {{ contact.r_num }} <br>
+                    {{ contact.r_add}} <br>
+                    {{ contact.r_city}} <br>
+                    {{ contact.r_state}} -
+                    {{ contact.r_zip}}</td>
+                <td>
+                    status &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp; {{ contact.status}} <br>
+
+                </td>
+               
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<br> {% else %} 
+<div class="d-flex justify-content-evenly align-items- text-white"><h1>No Transaction Available</h1></div> {% endif %}
+</div>
+{% endblock %}

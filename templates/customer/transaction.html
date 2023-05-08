@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{{ url_for('static', filename='vendor/animate.css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/remixicon/remixicon.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- vender js -->
+    <script src="{{ url_for('static', filename='vendor/aos/aos.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/glightbox/js/glightbox.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/php-email-form/validate.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.js') }}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <!-- title -->
+    <title> {% block title %} {% endblock title %} - cms</title>
+</head>
+
+<body style="background-image:url(../../static/img/transaction.jpg);background-size: cover;">
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top d-flex align-items-center " style="background: rgba(203, 225, 243, 0.329);">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            <div class="logo">
+                <h1>
+                    <a href="index.html">Courier</a>
+                </h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+            </div>
+
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a class="nav-link scrollto " href="/">Home</a></li>
+
+                    <li><a class="nav-link scrollto" href="/transaction">Transaction</a></li>
+
+                    <!-- login/logout -->
+                    {% if session['name'] %}
+                    <li><a class="nav-link scrollto" href="/logout">logout</a></li>
+                    {% endif %}
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+            <!-- .navbar -->
+
+        </div>
+    </header>
+    <!-- End Header -->
+    <br><br>
+    <div class="modal-body" >
+        {% if courier %}
+        <table class="table ">
+            <br>
+            <thead >
+                <tr>
+                    <td>#</td>
+                    <td ><b>courier details</b> </td>
+                    <td style="width:20%"><b>sender details</b></td>
+                    <td><b>receiver details</b></td>
+                    <td><b>status</b></td>
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for contact in courier %}
+                <tr>
+                    <td>{{loop.index}}</td>
+                    <td >{{contact.0}} <br>{{contact.2}}<br>{{contact.3}}</td>
+                    <td>{{contact.5}}<br>{{contact.6}}<br>{{contact.7}}<br>{{contact.8}},{{contact.9}}<br>{{contact.10}}-{{contact.11}}</td>
+                    <td>{{contact.12}}<br>{{contact.13}}<br>{{contact.14}}<br>{{contact.15}},{{contact.16}}<br>{{contact.17}}-{{contact.18}}</td>
+                    <td>{{contact.20}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class=""><br><br>
+            <h1 class="text-center text-white">No Transaction Available. </h1>
+        </div>
+        {% endif %}
+       
+    </div>
+</body>
+
+</html>
