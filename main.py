@@ -1,4 +1,3 @@
-#imports
 from flask import Flask
 from mail import mail
 from database import mysql
@@ -7,15 +6,21 @@ from branch import branch
 from courier import courier
 from courier_boy import courier_boy
 from customer import customer
+import os
 
-#create app
+
 app = Flask(__name__)
 
 # Mysql Connection
 app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'cms'
+
+try:
+    app.config['MYSQL_DB'] = os.environ['CMS_DB_NAME']
+    app.config['MYSQL_USER'] = os.environ['CMS_DB_USER']
+    app.config['MYSQL_PASSWORD'] = os.environ['CMS_DB_PASS']
+except KeyError:
+    print('Please set database name, username and password as enviroment variables, follow steps in readme file for more info.')
+
 app.secret_key='itsMySecretKey'
 mysql.init_app(app)
 
